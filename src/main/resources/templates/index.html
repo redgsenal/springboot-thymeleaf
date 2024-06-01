@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<th:block th:insert="~{common/head::head}"></th:block>
+
+<body>
+    <div class="container">
+        <h1>This is a header.</h1>
+        <p th:text="'The message is ' + ${message} + '. End message.'"></p>
+        <div class="row">
+            <div class="col-md-6">
+                <table class="table table-responsive table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>John</td>
+                            <td>Doe</td>
+                            <td>jd@demo.com</td>
+                        </tr>
+                        <tr>
+                            <td>Jane</td>
+                            <td>Lee</td>
+                            <td>jl@demo.com</td>
+                        </tr>
+                        <tr>
+                            <td>Stan</td>
+                            <td>Mills</td>
+                            <td>sm@demo.com</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="container">
+        <h1>List of Users.</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <table class="table table-responsive table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                            <th>Rolw</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="user: ${users}">
+                            <td th:text="${user.firstName}"></td>
+                            <td th:text="${user.lastName}"></td>
+                            <td th:text="${user.email}"></td>
+                            <th:block th:switch="${user.role}">
+                                <td th:case="ADMIN">Administrator</td>
+                                <td th:case="MANAGER">Manager</td>
+                                <td th:case="REGULAR">Regular</td>
+                                <td th:case="User">User</td>
+                                <td th:case="*">Guest</td>
+                            </th:block>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h5>Admin User</h5>
+            </div>
+            <div class="col">
+                <label>First Name:</label><span th:utext="${adminUser.firstName}"></span>
+            </div>
+            <div class="col">
+                <label>Last Name:</label><span th:utext="${adminUser.lastName}"></span>
+            </div>
+            <div class="col">
+                <label>Email:</label><span th:utext="${adminUser.email}"></span>
+            </div>
+            <div class="col">
+                <label>User Role:</label><span th:utext="${adminUser.role}"></span>
+            </div>
+            <div class="col">
+                <label>Role Type:</label>
+                <th:block th:switch="${adminUser.role}">
+                    <span th:case="ADMIN">Administrator</span>
+                    <span th:case="MANAGER">Manager</span>
+                    <span th:case="REGULAR">Regular</span>
+                    <span th:case="USER">User</span>
+                    <span th:case="*">Guest</span>
+                </th:block>
+            </div>
+            <div class="col">
+                <label>Admin:</label><span th:utext="${adminUser.isAdmin}"></span>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h5>Regular User</h5>
+            </div>
+            <div class="col">
+                <label>First Name:</label><span th:utext="${regularUser.firstName}"></span>
+            </div>
+            <div class="col">
+                <label>Last Name:</label><span th:utext="${regularUser.lastName}"></span>
+            </div>
+            <div class="col">
+                <label>Email:</label><span th:utext="${regularUser.email}"></span>
+            </div>
+            <div class="col">
+                <label>User Role:</label><span th:utext="${regularUser.role}"></span>
+            </div>
+            <div class="col">
+                <label>Role Type:</label>
+                <th:block th:switch="${regularUser.role}">
+                    <span th:case="ADMIN">Administrator</span>
+                    <span th:case="MANAGER">Manager</span>
+                    <span th:case="REGULAR">Regular</span>
+                    <span th:case="USER">User</span>
+                    <span th:case="*">Guest</span>
+                </th:block>
+            </div>
+            <div class="col">
+                <label>Admin:</label><span th:utext="${regularUser.isAdmin}"></span>
+            </div>
+        </div>
+    </div>
+
+    <th:block th:replace="~{common/footer::footer}"></th:block>
+</body>
+
+</html>
